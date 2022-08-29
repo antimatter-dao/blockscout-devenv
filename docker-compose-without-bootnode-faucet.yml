@@ -15,7 +15,7 @@ services:
       POSTGRES_USER: "postgres"
       POSTGRES_DB: "blockscout"
     env_file:
-      - env/auth.env
+      - ./env/auth.env
     volumes:
       - postgres:/var/lib/postgresql/data
     ports:
@@ -32,12 +32,13 @@ services:
       nofile:
         soft: 65535
         hard: 65535
-    command: [ "/bin/bash", "-c", "chmod +x /build.sh;" ]
+    entrypoint: [ "/bin/bash", "-c", "chmod +x /build.sh;bash" ]
     stdin_open: true
     tty: true
     env_file:
       - env/blockscout-without-bootnode-faucet.env
     volumes:
-      - ../blockscout:/app
-      - ../build.sh:/build.sh
-      - ../genesis.json:/data/genesis.json:ro
+      - ./blockscout:/app
+      - ./build.sh:/build.sh
+      - ./genesis.json:/data/genesis.json:ro
+      - ./build_to_restart.sh:/build_to_restart.sh

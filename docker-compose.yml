@@ -85,7 +85,7 @@ services:
       POSTGRES_USER: "postgres"
       POSTGRES_DB: "blockscout"
     env_file:
-      - env/auth.env
+      - ./env/auth.env
     volumes:
       - postgres:/var/lib/postgresql/data
     ports:
@@ -104,7 +104,7 @@ services:
         hard: 65535
     command: [ "/bin/bash", "-c", "chmod +x /build.sh; while true; do sleep 30; done;" ]
     env_file:
-      - env/common-blockscout.env
+      - ./env/common-blockscout.env
     volumes:
       - ./blockscout:/app
       - ./build.sh:/build.sh
