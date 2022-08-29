@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -e
-
-cd /app/block_scout_web/assets
+export MIX_ENV=prod
+cd /app/apps/block_scout_web/assets
 node_modules/webpack/bin/webpack.js --mode development
-cd apps
+cd /app
 mix phx.digest
 mix phx.server
