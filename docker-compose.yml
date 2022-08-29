@@ -102,10 +102,11 @@ services:
       nofile:
         soft: 65535
         hard: 65535
-    command: [ "/bin/bash", "-c", "chmod +x /build.sh; while true; do sleep 30; done;" ]
+    command: [ "/bin/bash", "-c", "chmod +x /shell/build.sh; while true; do sleep 30; done;" ]
     env_file:
       - ./env/common-blockscout.env
     volumes:
       - ./blockscout:/app
-      - ./build.sh:/build.sh
       - ./genesis.json:/data/genesis.json:ro
+      - ./shell:/shell
+      
